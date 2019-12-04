@@ -17,7 +17,6 @@ chmod +x /usr/bin/outguess-0.13
 wget -O /usr/bin/outguess https://github.com/mmayfield1/SSAK/raw/master/programs/64/outguess_0.2
 chmod +x /usr/bin/outguess
 
-# Download STRINGS
-wget -O /usr/bin/strings https://github.com/mmayfield1/SSAK/raw/master/programs/64/strings
-chmod +x /usr/bin/strings
+# Install STRINGS
+# apt-get install binutils
 
