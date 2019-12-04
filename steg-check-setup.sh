@@ -20,4 +20,4 @@ chmod +x /usr/bin/outguess
 # Install STRINGS
 # apt-get install binutils
 
-chmod +x stegcheck.sh
+chmod +x steg-check.sh
