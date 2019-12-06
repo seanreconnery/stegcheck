@@ -2,6 +2,9 @@
 
 FILE=$1
 TMP_FILE=/tmp/out
+TMP2=/tmp/out2
+
+# search strings
 s1="(7),01444"
 s2="22222222222222222222222222222222222222222222222222"
 s3="3br"
@@ -110,7 +113,7 @@ echo
 echo -e "   Looking For ${RED}STEGO${NO_COLOR} Header Signatures..."
 echo "-------------------------------------------------"
 
-strings $FILE | head -n 20 > $TMP_FILE
+strings $FILE | head -n 20 > $TMP2
 
 while read -r row
 do
@@ -201,10 +204,10 @@ if [[ $row == *"$ls4" ]]; then
    ((JPH++))
    ((CHANCE++))
 fi
+ 
+done < $TMP2
 
- 
- 
-done < $TMP_FILE
+rm $TMP2
  
 echo -e "     ${RED}$CHANCE${NO_COLOR} of 8 ${RED}OUTGUESS${NO_COLOR} signature strings found to indicate potential STEGANOGRAPHY"
 
