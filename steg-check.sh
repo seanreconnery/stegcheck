@@ -2,7 +2,6 @@
 
 FILE=$1
 TMP_FILE=/tmp/out
-
 s1="(7),01444"
 s2="22222222222222222222222222222222222222222222222222"
 s3="3br"
@@ -20,10 +19,15 @@ jp5="1\"AQ"
 jp6="A\"Qa"
 jp7="a\"q2"
 jp8="aq#3Br"
+jp9="#BQRa"
+jp10="B3q$R"
+jp11="Q\"2aq"
+jp12="\"2Qa"
 
 ls1=",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
 ls2="(((((((((((((((((((((((((((((((((((((((((((((((((("
 ls3="\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
+ls4="\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'"
 
 declare -i CHANCE=0
 declare -i JPH=0
@@ -114,35 +118,35 @@ do
 if [[ $row == *"$s1"* ]]; then
    CHANCE=$((CHANCE + 1))
 fi
- 
-if [[ $row == *"$s2"* ]]; then 
+
+if [[ $row == *"$s2"* ]]; then
    CHANCE=$((CHANCE + 1))
 fi
-  
-if [[ $row == *"$s3" ]]; then 
+
+if [[ $row == *"$s3" ]]; then
    ((CHANCE++))
 fi
- 
-if [[ $row == "$s4" ]]; then 
+
+if [[ $row == "$s4" ]]; then
    ((CHANCE++))
 fi
- 
+
 if [[ $row ==  *"$s5"* ]]; then
    ((CHANCE++))
 fi
-   
+
 if [[ $row ==  "$s6" ]]; then
    ((CHANCE++))
 fi
- 
+
 if [[ $row ==  "$s7" ]]; then
    ((CHANCE++))
 fi
- 
+
 if [[ $row == *"$s8"* ]]; then
    ((CHANCE++))
 fi
- 
+
 if [[ $row == *"$jp1"* ]]; then
    ((JPH++))
 fi
@@ -167,22 +171,42 @@ fi
 if [[ $row == *"$jp8" ]]; then
    ((JPH++))
 fi
+if [[ $row == *"$jp9" ]]; then
+   ((JPH++))
+fi
+if [[ $row == *"$jp10" ]]; then
+   ((JPH++))
+fi
+if [[ $row == *"$jp11" ]]; then
+   ((JPH++))
+fi
+if [[ $row == *"$jp12" ]]; then
+   ((JPH++))
+fi
+
 
 if [[ $row == *"$ls1"* ]]; then
    ((JPH++))
+   ((CHANCE++))
 fi
 if [[ $row == *"$ls2"* ]]; then
    ((JPH++))
+   ((CHANCE++))
 fi
-if [[ $row == *"$ls3"* ]]; then
+if [[ $row == *"$ls3" ]]; then
    ((JPH++))
    ((CHANCE++))
 fi
+if [[ $row == *"$ls4" ]]; then
+   ((JPH++))
+   ((CHANCE++))
+fi
+
  
  
 done < $TMP_FILE
  
-echo -e "     ${RED}$CHANCE${NO_COLOR} of 9 ${RED}OUTGUESS${NO_COLOR} signature strings found to indicate potential STEGANOGRAPHY"
+echo -e "     ${RED}$CHANCE${NO_COLOR} of 8 ${RED}OUTGUESS${NO_COLOR} signature strings found to indicate potential STEGANOGRAPHY"
 
 if [[ "$CHANCE" > 7 ]]; then
    echo "       99% chance there may be something embedded in this image."
@@ -212,7 +236,7 @@ fi
      
 echo
 
-echo -e "     ${RED}$JPH${NO_COLOR} of 11 potential iterations of ${RED}JPHIDE${NO_COLOR} signature strings found"
+echo -e "     ${RED}$JPH${NO_COLOR} of 12 potential iterations of ${RED}JPHIDE${NO_COLOR} signature strings found"
 
 if [[ "$JPH" > 2 ]]; then
    echo "       99% chance there may be something embedded in this image."
