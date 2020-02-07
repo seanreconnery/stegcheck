@@ -18,10 +18,14 @@ Then Outguess will see if it can extract data.
 And finally, the Strings in the header of the image will be checked against known steganography strings.
 
 # INSTALL:
-sudo apt-get update
-git clone https://github.com/seanreconnery/stegcheck.git
-cd stegcheck
-chmod +x steg-check-setup.sh
+sudo apt-get update 
+
+git clone https://github.com/seanreconnery/stegcheck.git 
+
+cd stegcheck 
+
+chmod +x steg-check-setup.sh 
+
 
 # USE:
 ./steg-check.sh IMG.jpg
