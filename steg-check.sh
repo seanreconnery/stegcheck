@@ -5,6 +5,7 @@ TMP_FILE=/tmp/out
 TMP2=/tmp/out2
 
 # search strings
+
 s1="(7),01444"
 s2="22222222222222222222222222222222222222222222222222"
 s3="3br"
@@ -23,22 +24,41 @@ jp6="A\"Qa"
 jp7="a\"q2"
 jp8="aq#3Br"
 jp9="#BQRa"
-jp10="B3q$R"
+jp10="B3q\$R"
 jp11="Q\"2aq"
 jp12="\"2Qa"
+jp13="\"Qaq"
+jp14="2aq#"
 
 ls1=",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,"
 ls2="(((((((((((((((((((((((((((((((((((((((((((((((((("
 ls3="\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\"\""
 ls4="\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'\'"
+ls5=";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;"
+ls6="55555555555555555555555555555555555555555555555555"
+ls7=".................................................."
+
+
+PN_HASH_DESIRED_OUTPUT="3f3078870bf5ddc7c4d0e6e5941805b7a062c45d -"
 
 declare -i CHANCE=0
 declare -i JPH=0
+
 
 RED='\033[0;31m'
 NO_COLOR='\033[0m'
 BOLD='\e[1m'
 BLUE='\e[44m'
+
+FILE_HEADER_SHASUM_OUTPUT=$(head -c 100 $FILE | shasum)
+
+if [[ $FILE_HEADER_SHASUM_OUTPUT = $PN_HASH_DESIRED_OUTPUT ]]; then
+    echo -e "${RED}Found${NO_COLOR} indications of ${RED}PIXEL KNOT${NO_COLOR}"
+else
+    echo -e "Found ${RED}NO${NO_COLOR} indications of ${RED}PIXEL KNOT${NO_COLOR}"
+
+fi
+
 
 check_result_file() {
   RESULT_FILE=$1
@@ -186,6 +206,12 @@ fi
 if [[ $row == *"$jp12" ]]; then
    ((JPH++))
 fi
+if [[ $row == *"$jp13" ]]; then
+   ((JPH++))
+fi
+if [[ $row == *"$jp14" ]]; then
+   ((JPH++))
+fi
 
 
 if [[ $row == *"$ls1"* ]]; then
@@ -201,6 +227,18 @@ if [[ $row == *"$ls3" ]]; then
    ((CHANCE++))
 fi
 if [[ $row == *"$ls4" ]]; then
+   ((JPH++))
+   ((CHANCE++))
+fi
+if [[ $row == *"$ls5" ]]; then
+   ((JPH++))
+   ((CHANCE++))
+fi
+if [[ $row == *"$ls6" ]]; then
+   ((JPH++))
+   ((CHANCE++))
+fi
+if [[ $row == *"$ls7" ]]; then
    ((JPH++))
    ((CHANCE++))
 fi
